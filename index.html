@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Dwayne's First Site</title>
+        <style>
+            body {
+                background: rgb(113, 130, 131);
+                color: rgb(130, 207, 169);
+                padding: 10px;
+                font-family: arial;
+            }
+            #all-contents {
+                max-width: 800px;
+                margin: auto;
+            }
+        
+            /* navigation menu */
+            nav {
+                border-radius: 50% 20% / 10% 40%;
+                background: rgb(44, 165, 221);
+                margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+            }
+            nav h1 {
+                display: flex;
+                align-items: center;
+                color: #eef7d0;
+                flex: 1;
+                margin: 0;
+            }
+            nav ul {
+                list-style-image: none;
+            }
+            nav li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            nav a {
+                text-decoration: none;
+                color: #eef7d0;
+            }
+        
+            /* main container area beneath menu */
+            main {
+                border-radius: 10px 100px / 120px;
+                border: dotted;
+                border-width: 10px 4px;
+                border-color:rgb(83, 142, 194); 
+                border-radius: 10px 40px;
+                background: rgb(107, 104, 97);
+                display: flex;
+            }
+            .sidebar {
+                margin-right: 25px;
+                padding: 10px;
+            }
+            .sidebar img {
+                border: groove 1em rgba(0, 255, 221, 0.479);
+                border-radius: 2em;
+                width: 200px;
+            }
+            .content {
+                flex: 1;
+                padding: 15px;
+            }
+            h2, h3 {
+                margin: 0px;
+            }
+        </style>
+        
+    </head>
+    
+    <body>
+        <div id="all-contents">
+            <nav>
+                <h1>Dwayne's Dabble in Web Design</h1>
+                <ul>
+                    <li>
+                        <a href="index.html"> Home </a>
+                    </li>
+                    <li>
+                        <a href="portfolio.html"> Portfolio </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main> 
+                <div class="sidebar">
+                    <img src="https://scontent-dfw5-2.xx.fbcdn.net/v/t39.30808-6/230573661_4528821927170337_1884974000883515608_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=35ZWZgvDIZUAX9wfXpa&_nc_ht=scontent-dfw5-2.xx&oh=e83c4f07474d628495e68ca37dc0ffee&oe=61B31ECE" alt="Guy painting with bestie" width="350" height="400">
+                </div>
+
+                <div class="content">
+                    <h2>Dwayne Ballard</h2>
+
+                    <p>Student at Operation Spark</p>
+
+                    <div class="interests">
+                        <h3>Interests</h3>
+                        <ul>
+                            <li>Video Gaming</li>
+                            <li>Bike Riding</li>
+                            <li>Painting</li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
