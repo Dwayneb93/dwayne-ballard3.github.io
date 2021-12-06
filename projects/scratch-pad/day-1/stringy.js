@@ -195,9 +195,17 @@ function longest(stringOne, stringTwo) {
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
-
-
+    // Compare the first string to see which one starts before the other alphabetically
+    if (stringOne < stringTwo) {
+    // If the first string is in a higher order, return 1
+        return 1;
+    } else if (stringOne > stringTwo) {
+    // If the second string is higher, return -1
+        return -1;
+    } else if (stringOne === stringTwo) {
+    // If they are EQUAL, return 0
+        return 0;
+    }
     // YOUR CODE ABOVE HERE //
 }
 
@@ -211,7 +219,17 @@ function sortAscending(stringOne, stringTwo) {
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+    //Compare the two strings to see which one starts before the other alphabetically (we want to do it backwards this time)
+    if (stringOne > stringTwo) {
+        // if first string is in a lower order return 1
+        return 1;
+    } else if (stringOne < stringTwo) {
+        // if first string is in higher order compared to second string, return -1
+        return -1;
+    } else if (stringOne === stringTwo) {
+        // if they are equal to one another alphabetically, return 0
+        return 0;
+    }
 
 
 
