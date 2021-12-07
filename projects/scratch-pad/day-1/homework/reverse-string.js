@@ -21,7 +21,7 @@
 
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
-    // Create a variable that is going to collect the reversed output and set it to an empty string
+    // Create a variable that is going to collect the reversed output and assign it to an empty string
     var newStr = "";
     // create a for loop to iterate through each character in the string input until i (length of the input) reaches 0
     for (var i = input.length - 1; i >= 0; i--) {
