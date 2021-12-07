@@ -34,12 +34,18 @@
  */
 
 function greeter(hour) {
-    // YOUR CODE BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
+  // create if / else condition chain to tell console to do different things based on certain conditions
+  // If hours are between 0 and 11, print "Good Morning!" to the console
+    if(hour <= 11) {
+        console.log("Good Morning!");
+    } else if(hour <= 16) {
+        console.log("Good Afternoon!");
+    } else if(hour <= 21) {
+        console.log("Good Evening!");
+    } else {
+        console.log("Good Night!");
+    }
+
 }
 
 /*
@@ -53,7 +59,7 @@ function greeter(hour) {
  * var hour = today.getHours();
  */
 
-greeter(11);
+greeter(5);
 
 
 
