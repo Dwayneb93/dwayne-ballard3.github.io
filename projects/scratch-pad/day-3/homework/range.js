@@ -22,12 +22,23 @@
  *  c. you'll wanna make use of the push() method of Array.
  */
 function range(start, end) {
-    // YOUR CODE GOES BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE GOES ABOVE HERE //
+    // create output array to store range
+    var range = [];
+    // first start off with if first arg is greater than or less than the second arg
+     // if first arg is less than second, push range to array in normal order
+    if (start < end) {
+        for (var i = start; i <= end; i++) {
+            range.push(i);
+        } 
+        // now return that range array for if start is less than end
+        return range;
+     // if 2nd arg is greater than first, push range to array in reverse
+    } else if (start > end) {
+        for (var i = start; i >= end; i--) {
+            range.push(i);
+        }
+        return range;
+    }
 }
 
 
