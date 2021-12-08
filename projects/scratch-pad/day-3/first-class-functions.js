@@ -13,9 +13,9 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    return function(value) {
+      return value > base; // since this already results to true or false, we dont have to do if else if chain
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -41,7 +41,9 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
+    return function(string) {
+
+    }
     
     
     
@@ -69,7 +71,7 @@ function createEndsWithFilter(endsWith) {
  * TIP: You need to loop over the Strings, right? We need to pass each String to 
  * the modify Function, but we need to collect the results into some collection.
  */
-function modifyStrings(strings, modify) {
+function modifyStrings(strings, modify) { // ["Alex", "Francis", "Aaron"]
     // YOUR CODE BELOW HERE //
     
     
