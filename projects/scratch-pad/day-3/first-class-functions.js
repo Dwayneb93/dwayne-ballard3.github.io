@@ -12,12 +12,10 @@
  * base.
  */
 function createGreaterThanFilter(base) {
-    // YOUR CODE BELOW HERE //
     return function(value) {
       return value > base; // since this already results to true or false, we dont have to do if else if chain
     }
-    
-    // YOUR CODE ABOVE HERE //
+
 }
 
 /** 
@@ -26,12 +24,9 @@ function createGreaterThanFilter(base) {
  * base.
  */
 function createLessThanFilter(base) {
-    // YOUR CODE BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
+    return function(value) {
+        return value < base;
+    }
 }
 
 /** 
@@ -40,14 +35,10 @@ function createLessThanFilter(base) {
  * character.
  */
 function createStartsWithFilter(startsWith) {
-    // YOUR CODE BELOW HERE //
     return function(string) {
-
+        // turns out tests are CASE SENSITIVE
+        return string[0].toUpperCase() === startsWith.toUpperCase();
     }
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
 }
 
 /** 
@@ -56,13 +47,12 @@ function createStartsWithFilter(startsWith) {
  * character.
  */
 function createEndsWithFilter(endsWith) {
-    // YOUR CODE BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
+    return function(string) {
+        //tests are CASE SENSITIVE & REMEMBER that string.length - 1 results in just an index, so we have to call it on the string to get the value
+        return string[string.length - 1].toLowerCase() === endsWith.toLowerCase();
+    }
 }
+
 
 /** 
  * Given an Array of Strings and a Function designed to modify a String, 
@@ -72,12 +62,17 @@ function createEndsWithFilter(endsWith) {
  * the modify Function, but we need to collect the results into some collection.
  */
 function modifyStrings(strings, modify) { // ["Alex", "Francis", "Aaron"]
-    // YOUR CODE BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
+    // create a variable to store modified strings
+    var modified = [];
+    // loop over the string
+    for (var i = 0; i < strings.length; i++) {
+        // create a variable  that will allow you to pass in each string into the tester function (modify parameter)
+        var result = modify(strings[i]);
+        // push each modified result into the output array
+        modified.push(result);
+    }
+    // return output array
+    return modified;
 }
 
 /** 
@@ -89,13 +84,22 @@ function modifyStrings(strings, modify) { // ["Alex", "Francis", "Aaron"]
  * 
  * TIP: You need to loop over the Strings, right? And pass them to the test?
  */
+
+// var array = ["Dwayne", "Heather", "Dylan"]
+
 function allStringsPass(strings, test) {
-    // YOUR CODE BELOW HERE //
-    
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
+    // loop over array of strings
+    for (var i = 0; i < strings.length; i++) {
+        // if the iterated string passes the test, push that string into the output array
+        // we dont want it exiting the loop after passing the test on first indexed string, so we test for which one doesnt bring back true so we can return false since all strings
+        // in the array do not pass the test
+        if (test(strings[i]) !== true) {
+            return false;
+        }
+    }
+    // we return true OUTSIDE of loop because it'll pass all the conditions of loop and exit the loop after reaching end of length of array and we want to return true, because
+    // all of the strings in the array passed the test at this point
+    return true;
 }
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
