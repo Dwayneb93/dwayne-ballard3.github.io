@@ -106,6 +106,7 @@ function getObjectLength(object) {
 function printObjectValuesInReverse(object) {
   // we should probably create an output array to push the values into, and loop over that array in reverse and print values to console
   // create output array
+  // *** SEE AN ALTERNATE METHOD BELOW ***
   var outputArr = [];
   // loop through object using a for in loop
   for (var key in object) {
@@ -117,8 +118,8 @@ function printObjectValuesInReverse(object) {
   // print each value to the console
     console.log(outputArr[i]);
   }
-}
-
+} 
+//  ***** COULDVE ALSO USED var array = Object.values(object); to get an array of objects valus
 
 
 
