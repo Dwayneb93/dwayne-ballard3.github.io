@@ -13,12 +13,8 @@
  * work?
  */
 function isArray(value) {
-    // YOUR CODE BELOW HERE //
+
     return Array.isArray(value);
-    
-    
-    
-    // YOUR CODE ABOVE HERE //
 }
 
 /** 
@@ -30,14 +26,14 @@ function isArray(value) {
  * with typeof.
  */
 function isObject(value) {
-    // YOUR CODE BELOW HERE //
+    
     // if object is an object and NONE of the other values that return 'object', return TRUE
     if (typeof value === 'object' && value !== null && Array.isArray(value) !== true && !(value instanceof Date)) {
         return true;
     } else {
         return false;
     }    
-    // YOUR CODE ABOVE HERE //
+   
 }
 
 /** 
@@ -47,7 +43,7 @@ function isObject(value) {
  * TIP: Similar to isObject, but we must return true if the value is an Array.
  */
 function isCollection(value) {
-    // YOUR CODE BELOW HERE //
+   
     // if collection is an object. return true
     if (typeof value === 'object' && value !== null && Array.isArray(value) !== true && !(value instanceof Date)) {
         return true;
@@ -58,7 +54,7 @@ function isCollection(value) {
         // otherwise, return false
         return false;
     }   
-    // YOUR CODE ABOVE HERE //
+   
 }
 
 /**
@@ -81,7 +77,7 @@ function isCollection(value) {
  *    typeOf([1,2,3]) -> "array"
  */ 
 function typeOf(value) {
-    // YOUR CODE BELOW HERE //
+    
     // if value is everything but a typeof value that returns "object" ... string, num, undefined, boolean, function
     if (typeof value !== "object") {
         return typeof value;
@@ -96,8 +92,7 @@ function typeOf(value) {
     } else {
         return "date"
     }
-    
-    // YOUR CODE ABOVE HERE //
+
 }
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
