@@ -15,6 +15,7 @@
 function isArray(value) {
 
     return Array.isArray(value);
+
 }
 
 /** 
@@ -28,7 +29,7 @@ function isArray(value) {
 function isObject(value) {
     
     // if object is an object and NONE of the other values that return 'object', return TRUE
-    if (typeof value === 'object' && value !== null && Array.isArray(value) !== true && !(value instanceof Date)) {
+    if (typeof value === 'object' && value !== null && Array.isArray(value) !== true && value instanceof Date === false) {
         return true;
     } else {
         return false;
