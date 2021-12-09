@@ -86,19 +86,24 @@ function modifyStrings(strings, modify) { // ["Alex", "Francis", "Aaron"]
  */
 
 // var array = ["Dwayne", "Heather", "Dylan"]
+/*function beginsWithA(str) {
+    return str[0] === "D";
+}
+*/
 
 function allStringsPass(strings, test) {
     // loop over array of strings
     for (var i = 0; i < strings.length; i++) {
-        // if the iterated string passes the test, push that string into the output array
-        // we dont want it exiting the loop after passing the test on first indexed string, so we test for which one doesnt bring back true so we can return false since all strings
-        // in the array do not pass the test
-        if (test(strings[i]) !== true) {
+        // pass the current array value to the test function
+        // if at LEAST ONE item in the array returns FALSE! *(see above example array and test)*
+        if (test(strings[i]) === false) {
+              // we want to exit function and return false so the function overall returns false since one doest pass
             return false;
         }
     }
     // we return true OUTSIDE of loop because it'll pass all the conditions of loop and exit the loop after reaching end of length of array and we want to return true, because
     // all of the strings in the array passed the test at this point
+      // want to make sure we do this outside so the loop goes over all items in array
     return true;
 }
 
