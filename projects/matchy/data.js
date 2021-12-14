@@ -43,8 +43,11 @@ console.log(animal);
  * Step 4 - Review
  *
  * 1. What are the different ways you can access properties on objects?
+ * 
  *  You can use either bracket or dot notation to access properties in objects
+ * 
  * 2. What are the different ways of accessing elements on arrays?
+ * 
  *  You can use bracket notation to access a specific index in the array. You can also
  * use various methods to manipulate elements in an array or add new ones.
  * *******************************************************************
@@ -105,16 +108,19 @@ var friends = [];
 // data types
 
 function getRandom(animals) {
- return animals[Math.floor(Math.random() * animals.length)];
+  // math.random returns a random number between 0 and less than 1
+  // math.floor returns the largest WHOLE integer rounded DOWN
+ return Math.floor(Math.random() * animals.length);
 }
-
 //getRandom(animals) results to a random index within the length of animals array
-// pushing the name by adding .name afterwards
-friends.push(getRandom(animals).name);
-console.log(friends);
 
-// CREATING friends key plus pushing friends array to first item in animals array
-animals[0]['friends'] = friends;
+// sooo friends.push(animals[at a random index within animals].name)
+friends.push(animals[getRandom(animals)].name);
+
+// add the friends array to one of the animals
+
+// Sooo... animals[at index 1][at key of friends] = is equal to the friends array
+animals[1]['friends'] = friends;
 console.log(animals);
 
 /**
