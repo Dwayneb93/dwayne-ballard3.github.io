@@ -49,7 +49,7 @@ function remove(animals, name) {
         if (animals[i].name === name) {
             // remove it with splice (start index, how many to delete) start index
             // is whatever iteration (i) and we want to delete just that one item
-            animals.splice(i, 1);
+            animals.splice(animals[i], 1);
         }
     }
 }
