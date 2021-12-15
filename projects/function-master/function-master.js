@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+   return Object.values(object);
 } 
 
 //////////////////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
-
+    return Object.keys(object).join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -19,7 +19,13 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
-    
+    var objectVals = [];
+    for (var key in object) {
+        if (typeof object[key] === "string") {
+            objectVals.push(object[key]);
+        }
+    }
+    return objectVals.join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -27,7 +33,11 @@ function valuesToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function arrayOrObject(collection) {
-    
+    if (Array.isArray(collection) === true) {
+        return "array";
+    } else {
+        return "object";
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,7 +45,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +53,11 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    var separateStrings = string.split(" ");
+    for (var i = 0; i < separateStrings.length; i++) {
+        separateStrings[i] = separateStrings[i].charAt(0).toUpperCase() + separateStrings[i].slice(1);
+    }
+    return separateStrings.join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -51,7 +65,7 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-
+    return "Welcome " + object.name.replace(object.name[0], object.name[0].toUpperCase()) + "!";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -59,7 +73,13 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
+    // since the tests are case sensitive, I must account for it so im making new variables to do so
+    // .replace() is a good method to replace something WITHIN a STRING
+    var capitalName = object.name.replace(object.name[0], object.name[0].toUpperCase());
 
+    var capitalSpecies = object.species.replace(object.species[0], object.species[0].toUpperCase());
+    // now return as full string using string interpolation or string cocatenation!
+    return `${capitalName} is a ${capitalSpecies}`;
 }
 
 //////////////////////////////////////////////////////////////////////
