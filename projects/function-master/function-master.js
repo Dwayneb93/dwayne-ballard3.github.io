@@ -87,7 +87,13 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    // check to see if noises array exists using truthy/falsey and if noises array has a length greater than 0
+    if (!object.noises || object.noises.length === 0) {
+        // if EITHER, return statement:
+        return "there are no noises";
+    }
+    // else, if it does exist, return that array where each item is joined at the space
+    return object.noises.join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -95,7 +101,17 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    // create a split version of the string to get an array of words we can loop through
+    var arrOfWords = string.split(" ");
+    // loop through array strings to see if word is in it
+    for (var i = 0; i < arrOfWords.length; i++) {
+        if (arrOfWords[i] === word) {
+    // return true if word is included
+            return true;
+        }
+    }
+    // otherwise, return false outside loop, so loop loops fully
+    return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -103,7 +119,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    object.friends.push(name);
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -111,15 +128,33 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    // hasOwnProperty checks to see if an object contains a certain key/prop
+    // .includes can be used on an array (which is what object["friends"] results to, and we can see if array includes name parameter)
+    if(object.hasOwnProperty("friends") && object["friends"].includes(name)) {
+        return true;
+    }
+    return false;
 }
+
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    // create output array to return list of names that a certain person is not friends with
+    var list = [];
+    // loop through array parameter (can loop through an ARRAY of OBJECTS)
+    for (var i = 0; i < array.length; i++) {
+        // if the .includes returns false (if name parameter isnt in iterated object's friends list)
+        // AND if the iterated object's name isn't the name we are passing in (iterated object
+        // won't have THEIR OWN name in their friends list..)
+        if ((array[i].friends.includes(name) === false) && (array[i].name !== name)) {
+            list.push(array[i].name);
+        } 
+    }
+    return list;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -127,7 +162,11 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    // just creating that key and assigning it a value will EITHER, reassign the value of
+    // that object key's value if it exists; OR it will create the key and assign it to the value
+    // parameter
+    object[key] = value;
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -135,7 +174,18 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+// loop through the objects keys
+ for (var key in object) {
+     // for each key in object, iterate through the input array
+     for (var i = 0; i < array.length; i++) {
+         // if an iteration in the array is EQUAL to a key in the object
+        if (array[i] === key) {
+            // then delete that key
+            // this should loop over each key in the object in reference to each item in the array
+            delete object[key];
+            }
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -143,7 +193,23 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+    //.indexOf method returns the FIRST INDEX at which a given a given element can be
+    // found in the array, *** OR -1 if it is not present
+    // create an output arr variable to store items of new array
+    var output = [];
+    // loop through array parameter
+    for (var i = 0; i < array.length; i++) {
+        // if the output array doesnt contain current array iteration (if .indexOf iteration is 
+        // equal to -1, we know it doesnt exist)
+        if(output.indexOf(array[i]) === -1) {
+            // if it doesn't exist yet, then put to output array
+            output.push(array[i]);
+            // on next iteration, if the value already exists in output array, it will not be pushed
+            // because .indexOf iteration will NOT equal to -1 anymore
+        }
+    }
+    // return output storing our UNIQUE values
+    return output;
 }
 
 //////////////////////////////////////////////////////////////////////
