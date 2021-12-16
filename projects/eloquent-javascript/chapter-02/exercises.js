@@ -18,8 +18,38 @@ function fizzBuzz() {
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
-
+function drawChessboard(x) {
+  var chessBoard = [];
+  // iterate based on the input number
+  for (let i = 0; i < x; i++) { // let allows us to name use i in both loops because they are block scoped
+    var row;
+    if(i % 2 === 0) {
+      row = " ";
+      // create counting sequence to add remaining characters
+      for (let i = 1; i < x; i++)  { // can use i again here because of let
+        // i is even
+        if (i % 2 === 0) {
+          row += " ";
+        } else {
+        // i is odd
+          row += "#";
+        }
+    }
+  } else {
+      row = "#";
+      for (let i = 1; i < x; i++) {
+        // if index is even
+        if (i % 2 === 0) {
+          row += "#";
+        } else {
+          row += " ";
+        }
+      }
+    }
+    chessBoard.push(row);
+  }
+  // join each value in the array with a line break \n
+  return chessBoard.join("\n");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
