@@ -79,7 +79,7 @@ function profileInfo(object) {
     var capitalName = object.name.replace(object.name[0], object.name[0].toUpperCase());
 
     var capitalSpecies = object.species.replace(object.species[0], object.species[0].toUpperCase());
-    // now return as full string using string interpolation or string cocatenation!
+    // now return as full string using string interpolation or string concatenation!
     return `${capitalName} is a ${capitalSpecies}`;
 }
 
@@ -92,9 +92,10 @@ function maybeNoises(object) {
     if (!object.noises || object.noises.length === 0) {
         // if EITHER, return statement:
         return "there are no noises";
-    }
+    } else {
     // else, if it does exist, return that array where each item is joined at the space
     return object.noises.join(" ");
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -151,7 +152,7 @@ function nonFriends(name, array) {
         // if the .includes returns false (if name parameter isnt in iterated object's friends list)
         // AND if the iterated object's name isn't the name we are passing in (iterated object
         // won't have THEIR OWN name in their friends list..)
-        if ((array[i].friends.includes(name) === false) && (array[i].name !== name)) {
+        if (array[i].friends.includes(name) === false && array[i].name !== name) {
             list.push(array[i].name);
         } 
     }
