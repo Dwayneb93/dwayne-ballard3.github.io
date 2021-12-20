@@ -132,7 +132,7 @@ _.last = function (array, number) {
     } else if (number > array.length) {
         return array;
         // now return a new array that starts at LAST INDEX and ends at the number input
-        // slicing at a negative index will return an array that deletes everything up to and including that index
+        // slicing at a negative index will return an array that starts at that index(deleting that index), backwards
     } else {
         return array.slice(-number);
     }
