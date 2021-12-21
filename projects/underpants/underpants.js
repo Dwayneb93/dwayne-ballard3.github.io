@@ -475,6 +475,37 @@ _.every = function(collection, func) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, func) {
+    let result = false;
+    // if function is not provided
+    if(func === undefined) {
+        //loop through collection
+        for (var i = 0; i < collection.length; i++) {
+            // if at least ONE element results in a truthy value, return true
+            if(collection[i]) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    // if collection is an array
+    if (Array.isArray(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+            if(func(collection[i], i, collection) === true) {
+                result = true;
+            }
+        }
+    } else {
+        for (var key in collection) {
+            if(func(collection[key], key, collection) === true) {
+                result = true;
+            }
+        }
+    }
+    return result;
+}
+
 
 /** _.reduce
 * Arguments:
@@ -495,6 +526,20 @@ _.every = function(collection, func) {
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(array, func, seed) { // intend to iterate through an array and create an accumulation effect. Want to return a single value at end
+    if (seed === undefined) {
+        seed = array[0]; // assign seed the value of array[0]
+        for (var i = 1; i < array.length; i++) { // since seed is already at the first element, we want to start at next iundex
+            seed = func(seed, array[i], i); // prev, current, index, seed is reset at each iteration in loop, its how we're creating the accumulation effect
+        }
+    } else { // if seed !== undefined
+        for (var i = 0; i < array.length; i++) { // since seed is already initialized..
+            seed = func(seed, array[i], i);
+        }
+    }
+    return seed;
+}
+
 
 /** _.extend
 * Arguments:
@@ -510,6 +555,18 @@ _.every = function(collection, func) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+
+_.extend = function(object) {
+    for (var i = 0; i < arguments.length; i++) {
+        _.each(arguments[i], function(value, key) {
+            object[key] = value;
+        });
+    }
+    return object;
+}
+
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
