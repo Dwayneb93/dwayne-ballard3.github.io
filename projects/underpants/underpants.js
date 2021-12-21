@@ -132,7 +132,8 @@ _.last = function (array, number) {
     } else if (number > array.length) {
         return array;
         // now return a new array that starts at LAST INDEX and ends at the number input
-        // slicing at a negative index will return an array that starts at that index(deleting that index), backwards
+        // slicing at a negative index will return an array that starts at that index(deleting that index) counting backward, and printing to array from there
+        // FORWARDS 
     } else {
         return array.slice(-number);
     }
@@ -154,6 +155,15 @@ _.last = function (array, number) {
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 
 /** _.contains
 * Arguments:
@@ -169,6 +179,15 @@ _.last = function (array, number) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 /** _.each
@@ -213,6 +232,16 @@ _.each = function(collection, func) {
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array) {
+    var uniqueArr = [];
+    for (let i = 0; i < array.length; i++) {
+        // if the the indexOf function checks the uniqueArr and array[i] (iterated item in input array) is not in there (= to -1) push that item into unique array
+        if (uniqueArr.indexOf(array[i]) === -1) {
+            uniqueArr.push(array[i]);
+        }
+    }
+    return uniqueArr;
+}
 
 /** _.filter
 * Arguments:
@@ -230,6 +259,21 @@ _.each = function(collection, func) {
 *   use _.each in your implementation
 */
 
+_.filter = function(array, func) {
+    // create output filtered array
+    var filtered = [];
+    // loop through input array
+    for (var i = 0; i < array.length; i++) {
+        // if func called with current element (array[i]), it's index (i), and the array (array) returns a true result
+        if (func(array[i], i, array) === true) {
+            // then push that current element into the filtered array
+            filtered.push(array[i]);
+        }
+    }
+    // return output
+    return filtered;
+}
+
 
 /** _.reject
 * Arguments:
@@ -243,6 +287,17 @@ _.each = function(collection, func) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, func) {
+    var rejected = [];
+    for (var i = 0; i < array.length; i++) {
+        if (func(array[i], i, array) === false) {
+            rejected.push(array[i]);
+        }
+    }
+    return rejected; 
+}
+
 
 
 /** _.partition
@@ -264,6 +319,23 @@ _.each = function(collection, func) {
 }
 */
 
+_.partition = function(array, func) {
+    var truthy = [];
+    var falsey = [];
+    var partitioned = [];
+    for (var i = 0; i < array.length; i++) {
+        if (func(array[i], i, array) === true) {
+        truthy.push(array[i]);
+    } else {
+        falsey.push(array[i]);
+        }
+    }
+    partitioned.push(truthy);
+    partitioned.push(falsey);
+    return partitioned;
+}
+
+
 
 /** _.map
 * Arguments:
@@ -281,6 +353,20 @@ _.each = function(collection, func) {
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func) {
+    var mapped = [];
+    if (Array.isArray(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+            mapped.push(func(collection[i], i, collection));
+        }
+    } else {
+        for (var key in collection) {
+            mapped.push(func(collection[key], key, collection));
+        }
+    }
+    return mapped;
+}
+
 
 /** _.pluck
 * Arguments:
@@ -293,6 +379,18 @@ _.each = function(collection, func) {
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(array, property) {
+    // we must use our new map function
+    // so plucked will be equal to the mapped array of object's properties
+    // map takes in the array of objects and a function that tests each object in the array
+    var plucked = _.map(array, function(object) {
+        // we just want map to return an array of the values at each object that have the property we are passing in
+        // so we look at objects[that have this property] <--- returns the value
+        return object[property];
+    });
+    // then we just return that mapped variable
+    return plucked;
+}
 
 /** _.every
 * Arguments:
@@ -315,6 +413,46 @@ _.each = function(collection, func) {
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+
+_.every = function(collection, func) {
+    // create a default result statement that can be easily reassigned if a test returns false in a loop
+    let result = true;
+    // if function is not given...
+    if(func === undefined) {
+        // loop through collection
+        for (var i = 0; i < collection.length; i++) {
+            // if current iteration results in a truthy value return true
+            if(collection[i]) {
+                return true;
+                //otherwise return false
+            } else {
+                return false;
+            } 
+        }
+    }
+    // if collection is an array
+    if (Array.isArray(collection)) {
+        // call the function on the current element, its index, and the collection itself
+        for (var i = 0; i < collection.length; i++) {
+            // if any iteration returns a false statement
+            if (func(collection[i], i, collection) === false) {
+                //reassign result to = false;
+                result = false;
+            }
+        }
+    } else {
+        // if collection is an object
+        for (var key in collection) {
+            // call function on current value, key, and collection
+            // if ANY item returns false, reassign result to false
+            if (func(collection[key], key, collection) === false) {
+                result = false;
+            }
+        }
+    }
+    // return our final result
+    return result;
+}
 
 /** _.some
 * Arguments:
