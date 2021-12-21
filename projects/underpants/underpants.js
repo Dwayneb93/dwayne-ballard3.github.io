@@ -187,6 +187,21 @@ _.last = function (array, number) {
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(collection, func) {
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        // iterate through the collection
+        for (var i = 0; i < collection.length; i++) {
+            // pass in the element, the index, and collection into the func
+            func(collection[i], i, collection);
+        }
+    } else {
+        for (var key in collection) {
+            func(collection[key], key, collection);
+        }
+    }
+}
+
 
 /** _.unique
 * Arguments:
