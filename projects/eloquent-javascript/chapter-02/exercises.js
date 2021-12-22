@@ -3,54 +3,50 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
-
+function triangles(input) {
+  var triangle = "";
+  for (var i = 0; i < input; i++) {
+    triangle += "#";
+    console.log(triangle);
+  }
 }
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-  
+  for (var i = 1; i <= 15; i++) {
+    if(i % 3 === 0 && i % 5 === 0) {
+      console.log("fizzbuzz");
+    } else if (i % 3 === 0) {
+      console.log("fizz");
+    } else if (i % 5 === 0) {
+      console.log("buzz");
+    } else {
+      console.log(i);
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard(x) {
-  var chessBoard = [];
-  // iterate based on the input number
-  for (let i = 0; i < x; i++) { // let allows us to name use i in both loops because they are block scoped
-    var row;
-    if(i % 2 === 0) {
-      row = " ";
-      // create counting sequence to add remaining characters
-      for (let i = 1; i < x; i++)  { // can use i again here because of let
-        // i is even
-        if (i % 2 === 0) {
-          row += " ";
-        } else {
-        // i is odd
-          row += "#";
-        }
-    }
-  } else {
-      row = "#";
-      for (let i = 1; i < x; i++) {
-        // if index is even
-        if (i % 2 === 0) {
-          row += "#";
-        } else {
-          row += " ";
-        }
+function drawChessboard(input) {
+  var chessboard = "";
+  for (var i = 0; i < input; i++) {
+    for (var y = 0; y < input; y++) {
+      if((i + y) % 2 === 0) {
+        chessboard += " ";
+      } else {
+        chessboard += "#";
       }
     }
-    chessBoard.push(row);
+    chessboard += "\n";
   }
-  // join each value in the array with a line break \n
-  return chessBoard.join("\n");
+  console.log(chessboard);
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
