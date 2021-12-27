@@ -559,10 +559,8 @@ _.reduce = function(array, func, seed) { // intend to iterate through an array a
 
 _.extend = function(object) {
     for (var i = 0; i < arguments.length; i++) {
-        _.each(arguments[i], function(value, key) {
-            object[key] = value;
-        });
-    }
+        Object.assign(object, arguments[i]);
+        };
     return object;
 }
 
