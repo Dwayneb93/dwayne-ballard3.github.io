@@ -23,7 +23,7 @@ var _ = {};
 
 _.identity = function(value) {
     return value;
-}
+};
 
 /** _.typeOf
 * Arguments:
@@ -63,7 +63,7 @@ _.typeOf = function(value) {
     } else {
         return "null";
     }
-}
+};
 
 /** _.first
 * Arguments:
@@ -100,7 +100,7 @@ _.first = function(array, number) {
         // by "number"
         return array.slice(0, number);
     }
-}
+};
 
 
 /** _.last
@@ -137,7 +137,7 @@ _.last = function (array, number) {
     } else {
         return array.slice(-number);
     }
-}
+};
 
 /** _.indexOf
 * Arguments:
@@ -162,7 +162,7 @@ _.indexOf = function(array, value) {
         }
     }
     return -1;
-}
+};
 
 
 /** _.contains
@@ -187,7 +187,7 @@ _.contains = function(array, value) {
         }
     }
     return false;
-}
+};
 
 
 /** _.each
@@ -219,7 +219,7 @@ _.each = function(collection, func) {
             func(collection[key], key, collection);
         }
     }
-}
+};
 
 
 /** _.unique
@@ -241,7 +241,7 @@ _.unique = function(array) {
         }
     }
     return uniqueArr;
-}
+};
 
 /** _.filter
 * Arguments:
@@ -272,7 +272,7 @@ _.filter = function(array, func) {
     }
     // return output
     return filtered;
-}
+};
 
 
 /** _.reject
@@ -296,7 +296,7 @@ _.reject = function(array, func) {
         }
     }
     return rejected; 
-}
+};
 
 
 
@@ -333,7 +333,7 @@ _.partition = function(array, func) {
     partitioned.push(truthy);
     partitioned.push(falsey);
     return partitioned;
-}
+};
 
 
 
@@ -365,7 +365,7 @@ _.map = function(collection, func) {
         }
     }
     return mapped;
-}
+};
 
 
 /** _.pluck
@@ -390,7 +390,7 @@ _.pluck = function(array, property) {
     });
     // then we just return that mapped variable
     return plucked;
-}
+};
 
 /** _.every
 * Arguments:
@@ -452,7 +452,7 @@ _.every = function(collection, func) {
     }
     // return our final result
     return result;
-}
+};
 
 /** _.some
 * Arguments:
@@ -504,7 +504,7 @@ _.some = function(collection, func) {
         }
     }
     return result;
-}
+};
 
 
 /** _.reduce
@@ -527,18 +527,20 @@ _.some = function(collection, func) {
 */
 
 _.reduce = function(array, func, seed) { // intend to iterate through an array and create an accumulation effect. Want to return a single value at end
+    // if NO seed is provided
     if (seed === undefined) {
         seed = array[0]; // assign seed the value of array[0]
-        for (var i = 1; i < array.length; i++) { // since seed is already at the first element, we want to start at next iundex
+        for (var i = 1; i < array.length; i++) { // since seed is already at the first element above, we want to start at next index so i starts at 1
             seed = func(seed, array[i], i); // prev, current, index, seed is reset at each iteration in loop, its how we're creating the accumulation effect
         }
+    // else, if seed IS provided
     } else { // if seed !== undefined
         for (var i = 0; i < array.length; i++) { // since seed is already initialized..
             seed = func(seed, array[i], i);
         }
     }
     return seed;
-}
+};
 
 
 /** _.extend
