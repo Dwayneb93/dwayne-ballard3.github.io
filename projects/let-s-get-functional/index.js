@@ -183,6 +183,7 @@ var topThreeTags = function(array) {
 
 var genderCount = function(array) {
     var genders = _.reduce(array, function(count, person, index) {
+        // our seed {} at the bottom is an empty object which is where all this is being stored to
         if (count[person.gender]) {
             count[person.gender] += 1;
         } else {
