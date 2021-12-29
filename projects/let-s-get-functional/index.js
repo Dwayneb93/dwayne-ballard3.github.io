@@ -139,9 +139,59 @@ var friendsCount = function(array, name) {
     return friendsList.map(customer => customer.name);
 };
 
-var topThreeTags;
+var topThreeTags = function(array) {
+    // first let's use our map function to return an array of the tag arrays
+    var tagArrays = _.map(array, function(customer) {
+        return customer.tags;
+        // now how can we combine each array into one array? reduce + concat?
+    });
+    var combinedTags = tagArrays.reduce(function(prev, curr, index) {
+        // return prevArray.concat(currentArray); this will combine all out arrays into one.
+        return prev.concat(curr);
+    }, []);
+    // to count and store the values we can store them in pairs in an empty object
+    var tagObject = {};
+    // now we can loop through our combined tags list
+    for (var i = 0; i < combinedTags.length; i++) {
+        // if, for within our new object, if this current iteration (current tag) in the combined tag
+        // list doesn't exist, then create it and assign it a value of 1
+        if (tagObject[combinedTags[i]] === undefined) {
+            tagObject[combinedTags[i]] = 1;
+        } else {
+            // else if it is defined, add 1 to the value (to increase the "count");
+            tagObject[combinedTags[i]] += 1;
+        }
+    }
+    // our tagObject ={} now has a list of ALL the tags and the amount of times they occur 
+    // as key/value pairs
+    // now convert this object into an array of each key/value pair as an individual array by using
+    // Object.entries
+    var arrayPairs = Object.entries(tagObject);
+    // now we can use the SORT method to arrange these arrays in an order that we decide
+    var sorted = arrayPairs.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+    // now this has sorted our array pairs by value from high to low
+    // now we can create an output array that just has the top 3 VALUES in it
+    var output = [];
+    // i pushed like this because the data is now set up as an array with subarrays like this
+    // [ [ 'Lorem', 1 ], [ 'Aquiem', 4 ], [ 'leno', 5 ]];
+    // so we just want to push the names (the 0 index) of each of the first 3 indexes
+    output.push(sorted[0][0], sorted[1][0], sorted[2][0]);
+    return output;
+};
 
-var genderCount;
+var genderCount = function(array) {
+    var genders = _.reduce(array, function(count, person, index) {
+        if (count[person.gender]) {
+            count[person.gender] += 1;
+        } else {
+            count[person.gender] = 1;
+        }
+        return count;
+    }, {});
+    return genders;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
