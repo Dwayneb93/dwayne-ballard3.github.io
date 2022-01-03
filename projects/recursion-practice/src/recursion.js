@@ -4,13 +4,51 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
+
 var factorial = function(n) {
+  // base
+  if (n === 1 || n === 0) {
+    return 1;
+  } else if (n < 0) {
+    return null;
+  }
+  // recursion
+  return n * factorial(n - 1);
 };
+
+/*
+factorial(5)
+  // FALSE // return 5 * factorial(4)
+factorial(4)
+  // FALSE // return 5 * 4 * factorial(3)
+factorial(3)
+  // FALSE // return 5 * 4 * 3 * factorial(2)
+factorial(2)
+  // FALSE // return 5 * 4 * 3 * 2 * 1
+
+*/
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
-var sum = function(array) {
+
+var sum = function(array, total = 0) {
+  // base
+  if (array.length === 0) {
+    return total;
+  }
+  // recursion
+  total += array[0];
+  return sum(array.slice(1), total);
 };
+
+/*
+ sum([1, 2, 3, 4, 5, 6])
+  // FALSE // sum += arr[0] // sum = 1
+    // FALSE // sum(arr.slice(1), sum) // sum = 
+    // 
+  
+*/
+
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
@@ -18,13 +56,43 @@ var arraySum = function(array) {
 };
 
 // 4. Check if a number is even.
+
 var isEven = function(n) {
+  // base
+  if (n === 1) {
+    return false;
+  } else if (n === 0) {
+    return true;
+  } else if (n < 0) {
+    // had to account for negative integers so I used the Math.abs() function to reassign the value of n to the absoulute value of itself
+    // if n is less than 0 (if n is negative)
+    n = Math.abs(n);
+  }
+  // recursion
+  return isEven(n - 2);
 };
+
+/*
+isEven(9)
+  // FALSE, isEven(7) 
+isEven(7)
+  // FALSE, isEven(5)
+isEven(5)
+  // FALSE, isEven(3)
+isEven(3)
+  // False, isEven(1)
+isEven(1)
+  // TRUE, return FALSE
+*/
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
-var sumBelow = function(n) {
+
+var sumBelow = function(n, sum = 0) {
+  // base
+
+  // recursion
 };
 
 // 6. Get the integers in range (x, y).
