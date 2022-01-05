@@ -307,7 +307,14 @@ var countOccurrence = function(array, value, count = 0) {
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
-var rMap = function(array, callback) {
+
+var rMap = function(array, callback, mappedArr =[]) {
+  if (array.length === 0) {
+    return mappedArr;
+  }
+  // push the value of array[0] after being passed into the callback function
+  mappedArr.push(callback(array[0]));
+  return rMap(array.slice(1), callback, mappedArr);
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -342,18 +349,37 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
+
 var nthFibo = function(n) {
+
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
-var capitalizeWords = function(input) {
+
+var capitalizeWords = function(input, capitalizedArr = []) {
+  if (input.length === 0) {
+    return capitalizedArr;
+  }
+  // so, we are pushing the CAPITALIZED first index in the input into the output default parameter
+  capitalizedArr.push(input[0].toUpperCase());
+  // then were are calling the function on itself with the input sliced at the 1st index
+  return capitalizeWords(input.slice(1), capitalizedArr);
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array) {
+
+var capitalizeFirst = function(array, capitalArr =[]) {
+  if (array.length === 0) {
+    return capitalArr;
+  }
+  // push the first indexed first character CAPITALIZED + the remainder of that current string into
+  // the output array default parameter
+  capitalArr.push(array[0].charAt(0).toUpperCase() + array[0].slice(1));
+  // call function on itself at the next iteration, so we just slice off that previous first index
+  return capitalizeFirst(array.slice(1), capitalArr);
 };
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
@@ -375,7 +401,18 @@ var flatten = function(arrays) {
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
-var letterTally = function(str, obj) {
+
+var letterTally = function(str, obj, tallyObj = {}) {
+  if (str.length === 0) {
+    return tallyObj;
+  }
+  // I'm using BRACKET NOTATION because these values result to STRING VALUES
+  if (!tallyObj[str[0]]) {
+    tallyObj[str[0]] = 1;
+  } else {
+    tallyObj[str[0]] += 1;
+  }
+  return letterTally(str.slice(1), obj, tallyObj); 
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -383,7 +420,10 @@ var letterTally = function(str, obj) {
 // elements should not be changed.
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
+
 var compress = function(list) {
+
+  
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
