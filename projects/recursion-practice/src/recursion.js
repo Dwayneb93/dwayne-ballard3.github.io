@@ -231,28 +231,78 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
+
 var compareStr = function(str1, str2) {
+  // if once both of the strings' lengths are sliced down to equal 0 at the same time, then
+  // it must be the same string
+  if (str1.length === 0 && str2.length === 0) {
+    return true;
+  }
+  // if first character of str1 is equal to first character of str2, then that means, AT THIS POINT,
+  // they are equal so far, so call the function again with each of the strings sliced at the 1st index
+  if (str1[0] === str2[0]) {
+    return compareStr(str1.slice(1), str2.slice(1));
+  } else {
+    // once it slices down to where one doesn't equal the other, then they are not
+    // the same string, so return false!
+    return false;
+  }
 };
+
+/*
+compareStr("Dwayne", "Dwaynes")
+  if D === D
+    TRUE // compareStr("wayne", "waynes")
+    if w === w
+      TRUE // compareStr("ayne", "aynes")
+*/
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+
+var createArray = function(str, outputArr = []){
+  if (str.length === 0) {
+    return outputArr;
+  }
+  outputArr.push(str[0]);
+  return createArray(str.slice(1), outputArr);
 };
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+
+var reverseArr = function (array, reversed = []) {
+  if (array.length === 0) {
+    return reversed;
+  }
+  reversed.push(array[array.length - 1]);
+  return reverseArr(array.slice(0, array.length - 1), reversed);
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
-var buildList = function(value, length) {
+
+var buildList = function(value, length, output =[]) {
+  if (length === 0) {
+    return output;
+  }
+  output.push(value);
+  return buildList(value, length - 1, output);
 };
+
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
-var countOccurrence = function(array, value) {
+
+var countOccurrence = function(array, value, count = 0) {
+  if (array.length === 0) {
+    return count;
+  }
+  if (array[0] === value) {
+    count += 1;
+  }
+  return countOccurrence(array.slice(1), value, count);
 };
 
 // 20. Write a recursive version of map.
