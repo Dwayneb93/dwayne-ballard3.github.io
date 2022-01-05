@@ -155,11 +155,28 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that accepts a string a reverses it.
+
 var reverse = function(string) {
+  // base
+  if (string.length === 0) {
+    return "";
+  }
+  // recursion
+  return reverse(string.substr(1)) + string.charAt(0);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
+
 var palindrome = function(string) {
+  var transformed = string.replace(/[" "]/g, "").toLowerCase();
+  if (transformed.length <= 1) {
+    return true;
+  }
+   else if (transformed[0] === transformed[transformed.length - 1]) {
+    return palindrome(transformed.slice(1, transformed.length - 1));
+  } else {
+    return false;
+  }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -167,14 +184,34 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
+
 var modulo = function(x, y) {
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
+
 var multiply = function(x, y) {
+  if (y === 1) {
+    return x;
+  } else if (x === 0 || y === 0) {
+    return 0;
+  }
+  if (y < 0) {
+    return (-x) + multiply(x, y + 1);
+  }
+  return x + multiply(x, y - 1);
 };
+
+/*
+multiply(2, 4) => 8
+  return 2 + multiply(2, 3)
+  return 2 + 2 + multiply(2, 2)
+  return 2 + 2 + 2 + multiply(2, 1)
+
+*/
+
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
