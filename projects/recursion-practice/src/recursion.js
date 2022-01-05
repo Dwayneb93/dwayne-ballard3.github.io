@@ -421,10 +421,24 @@ var letterTally = function(str, obj, tallyObj = {}) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 
-var compress = function(list) {
-
-  
+var compress = function(list, output =[]) {
+  if (list.length === 0) {
+    return output;
+  }
+  // if value at index[0] IS NOT EQUAL to the value at index[1], then push that value
+  // into the output array (this is to account for CONSECUTIVE duplicates, since we
+  // are using recursion, index[0] and index[1] will always be the values tested)
+  if (list[0] !== list[1]) {
+    output.push(list[0]);
+  }
+  return compress(list.slice(1), output);
 };
+/*
+compress([1, 2, 2, 3, 4, 4, 5, 5, 5])
+  output = [1] // compress([2, 2, 3, 4, 4, 5, 5, 5])
+    output = [1, 2] // compress([2, 3, 4, 4, 5, 5, 5])
+
+*/
 
 // 32. Augment every element in a list with a new value where each element is an array
 // itself.
@@ -435,7 +449,10 @@ var augmentElements = function(array, aug) {
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+
+var minimizeZeroes = function(array, output =[]) {
+
+  
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
