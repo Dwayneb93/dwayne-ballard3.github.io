@@ -135,7 +135,7 @@ var exponent = function(base, exp) {
   if(exp < 0) {
     return Number(((1/base) * exponent(base, exp + 1)).toFixed(6));
   }
-  return base * exponent(base, exp-1);
+  return base * exponent(base, exp - 1);
 };
 
 // 8. Determine if a number is a power of two.
@@ -144,14 +144,14 @@ var exponent = function(base, exp) {
 // powerOfTwo(10); // false
 
 var powerOfTwo = function(n) {
-  if (n === 0) {
-    return false;
-  } else if (n % 2 !== 0 && n !== 1) {
-    return false;
-  } else {
+  if (n === 1) {
     return true;
+  } else if (n === 0) {
+    return false;
+  } else if (n % 2 !== 0) {
+    return false;
   }
-    return powerOfTwo(n - 1);
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
