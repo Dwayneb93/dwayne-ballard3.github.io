@@ -105,14 +105,21 @@ var sumBelow = function(n) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 
-var range = function(x, y) {
-  if (x - y === 1 || x - y === -1 || x - y === 0) {
-    return [];
-  } else if (x > y) {
-    return [x - 1, ...range(x - 1, y)];
-  } else if (y > x){
-    return [...range(x, y - 1), y - 1];
+var range = function(x, y, outputArr=[]) {
+  // base
+  if (x - y === 1 || x - y === -1 || x === y) {
+    return outputArr;
   }
+  // recursion
+  // if x is less than y 
+  if (x < y) {
+    outputArr.push(x + 1); 
+    return range(x + 1, y, outputArr); 
+  } else {
+  // else x is greater than y
+    outputArr.push(x - 1);
+    return range(x - 1, y, outputArr);
+  } 
 };
 
 // 7. Compute the exponent of a number.
