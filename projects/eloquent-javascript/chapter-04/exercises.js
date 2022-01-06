@@ -2,8 +2,25 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
-
+function range(start, end, step) {
+  var range = [];
+  if (start === end) {
+    return [];
+  }
+  if (step === undefined) {
+    for (let i = start; i <= end; i++) {
+      range.push(i);
+      }
+    } else {
+      if (step < 0) {
+        return [];
+      } else {
+        for (let i = start; i <= end; i+=step) {
+          range.push(i);
+        }
+      }
+    }
+  return range;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -11,31 +28,65 @@ function range() {
 ////////////////////////////////////////////////////////////////////////////////
 
 function sum() {
-
+  // iterate through array and collect a sum
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(array) {
+  var reversed = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+    reversed.push(array[i]);
+  }
+  return reversed;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
+function reverseArrayInPlace(array) { // DESTRUCTIVELY [1, 2, 3] => [3, 2, 1]
+  // [1, 2, 3, 4] // even number of values => [4, 3, 2, 1]
+      // array[0] = array[3 - 0]
+      // array[3] = array[3] = 1
 
+      // array[1] = ...
+      // array[2] = ...
+
+  // [1, 2, 3, 4, 5] // odd number of values
+
+  // if even number of array values
+  if (array.length % 2 === 0) {
+    // i divide length by 2 because if it is even, i only have to iterate through half the array
+    // because it evenly swaps out each number at that point
+    for (let i = 0; i < array.length / 2; i++) {
+      let temp = array[i]; 
+      array[i] = array[array.length - 1 - i];
+      array[array.length - 1 - i] = temp;
+    }
+  } else {
+    // Math.floor ROUNDS DOWN to accomodate for that dead-set middle value of an odd array that will
+    // never change or get touched when swapping 
+    for (let i = 0; i < Math.floor(array.length / 2); i++) {
+      let temp = array[i]; 
+      array[i] = array[array.length - 1 - i];
+      array[array.length - 1 - i] = temp;
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(array) {
+  var rest = null;
+  for (let i = array.length - 1; i >= 0; i--) {
+    rest = { value: array[i], rest }
+  }
+  return rest;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -58,8 +109,15 @@ function prepend() {
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth(list, n) {
+  // base
+  if (n === 0) {
+    return list.value;
+  } else if (n < 0) {
+    return undefined;
+  }
+  // recursion
+  return nth(list.rest, n - 1);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
