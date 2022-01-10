@@ -124,8 +124,33 @@ function nth(list, n) {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
+function deepEqual(x, y) {
+  // if x and y are not objects
+    // return the result of comparing x and y
+  if (typeof x !== 'object' && typeof y !== 'object') {
+    return x === y;
+  }
+  // if either x OR y is not an object, return false
+  if (typeof x !== 'object' || typeof y !== 'object') {
+    return false;
+  }
+  let xKeys = Object.keys(x); // [x keys]
+  let yKeys = Object.keys(y); // [y keys]
 
+  // if the length of xKeys is NOT equal to the length of yKeys
+  if (xKeys.length !== yKeys.length) {
+    return false;
+  }
+
+  // iterate through xKeys array
+  for (var i = 0; i < xKeys.length; i++) {
+    // determine if the curreny keys i not included in yKeys OR the 
+      // result of calling deepEquals on x[xKeys[i]], y[yKeys[i]] returns false
+    if (!yKeys.includes(xKeys[i]) || !deepEqual(x[xKeys[i]], y[yKeys[i]])) {
+      return false;
+    }
+  }
+  return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
