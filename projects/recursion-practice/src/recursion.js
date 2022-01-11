@@ -351,7 +351,15 @@ var fibonacci = function(n) {
 // nthFibo(3); // 2
 
 var nthFibo = function(n) {
+  if (n === 0) {
+    return 0;
+  } else if (n < 0) {
+    return null;
+  } else if (n === 2 || n === 1) {
+    return 1;
+  }
 
+  return nthFibo(n - 1) + nthFibo(n - 2);
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
@@ -451,21 +459,62 @@ var augmentElements = function(array, aug) {
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
 
 var minimizeZeroes = function(array, output =[]) {
-
-  
+  if (array.length === 0) {
+    return output;
+  } else if (array[0] !== 0) {
+    output.push(array[0]);
+    return minimizeZeroes(array.slice(1), output);
+  } else if (array[0] !== array[1]) {
+    output.push(array[0]);
+    return minimizeZeroes(array.slice(1), output);
+  }
+  return minimizeZeroes(array.slice(1), output);
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
 // their original sign.  The first number in the index always needs to be positive.
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
-var alternateSign = function(array) {
+var alternateSign = function(array, output = []) {
+  var values = array.slice();
+  var element = values.shift();
+  if (array.length === 0) {
+    return [];
+  }
+  if (array.length % 2 !== 0) {
+    return [element > 0 ? 0-element : element].concat(alternateSign(values));
+  } else {
+    return [element < 0 ? 0-element : element].concat(alternateSign(values));
+  }
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, outputStr = "") {
+  var arr = str.split(' ');
+  var obj = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine'
+  }
+  if (str.length === 0) {
+    return outputStr;
+  }
+  if (!Object.keys(obj).includes(str[0])) {
+    outputStr += str[0];
+  } else {
+    var newString = obj[str[0]] + str.slice(1);
+    return numToText(newString, outputStr);
+  }
+  return numToText(str.slice(1), outputStr);
 };
 
 // *** EXTRA CREDIT ***
