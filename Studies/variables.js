@@ -22,7 +22,7 @@ console.log(firstName); // prints --> Dwayne
 // 3. Re-assignment //
 // This is when you change or update the value of a previously assigned variable.
 firstName = "Michael";
-console.log(firstName); // prints --> Michael
+console.log(firstName); // prints --> "Michael"
 
 // 4. var, let, const //
 /**
@@ -35,13 +35,13 @@ console.log(firstName); // prints --> Michael
  */
 let favCharacter;
 favCharacter = "Tristana";
-console.log(favCharacter); // prints --> Tristana
+console.log(favCharacter); // prints --> "Tristana"
 favCharacter = "Thresh";
-console.log(favCharacter); // prints --> Thresh
+console.log(favCharacter); // prints --> "Thresh"
 
 const lanePref; // SYNTAX ERROR - cannot leave const variables unassigned
 lanePref = "Bottom";
-console.log(lanePref); // prints --> Bottom
+console.log(lanePref); // prints --> "Bottom"
 lanePref = "Support";
 console.log(lanePref); // prints --> TYPEERROR - assignment is made to a constant variable. CANNOT reassign variables declared with const
 
@@ -57,7 +57,7 @@ console.log(lanePref); // prints --> TYPEERROR - assignment is made to a constan
 for (var i = 0; i < 3; i++) {
     var chant = 'Go!';
 }
-console.log(chant); // prints --> Go! because var isn't stuck to if-statements or loops, However...
+console.log(chant); // prints --> "Go!"" because var isn't stuck to if-statements or loops, However...
 
 function exampleFunc() {
     var x = 5;
@@ -92,7 +92,7 @@ console.log(highestRank); // print --> undefined. The program sees the variable,
 
 var highestRank = "Platinum";
 
-console.log(highestRank); // print --> Platinum. The variable has been declared at this point in the code, so the program can see the value.
+console.log(highestRank); // print --> "Platinum" The variable has been declared at this point in the code, so the program can see the value.
 
 // let and const values are NOT hoisted. Therefore, you will get a reference error if you try to refer to them before they are declared. 
 
