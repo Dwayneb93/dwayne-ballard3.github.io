@@ -22,6 +22,9 @@ Starts off with an if statement that tests a condition in parentheses. Inside th
 statement that is executed if the tested condition is true.
 ** Can have as many else-if statements and then the "else" statement at the end is a default to end the code chain. **
 
+In a conditional chain, an else-if block will only execute if it is true AND if the previous conditions were false.
+As seen below, if the weather were rainy, it would skip the first if block, execute on the 2nd code block because it's true, and never reach the final block
+because one of the previous blocks tested true before reaching it.
 */
 
 var weatherToday = "sunny";
